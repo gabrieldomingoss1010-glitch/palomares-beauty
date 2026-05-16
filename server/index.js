@@ -174,8 +174,7 @@ app.post('/api/upload', authenticateToken, upload.single('file'), (req, res) => 
   saveDb();
 
   // Get the inserted row
-  const lastId = queryOne('SELECT last_insert_rowid() as id');
-  const newFile = queryOne('SELECT * FROM files WHERE id = ?', [lastId.id]);
+  const newFile = queryOne('SELECT * FROM files ORDER BY id DESC LIMIT 1');
 
   res.status(201).json(newFile);
 });

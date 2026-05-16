@@ -26,41 +26,37 @@ function Layout({ children }) {
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-          {/* Public route */}
-          <Route path="/login" element={<Login />} />
+      <FilesProvider>
+        <BrowserRouter>
+          <Routes>
+            {/* Public route */}
+            <Route path="/login" element={<Login />} />
 
-          {/* Protected routes */}
-          <Route path="/" element={
-            <ProtectedRoute>
-              <Navigate to="/dashboard" replace />
-            </ProtectedRoute>
-          } />
-          <Route path="/dashboard" element={
-            <ProtectedRoute>
-              <FilesProvider>
+            {/* Protected routes */}
+            <Route path="/" element={
+              <ProtectedRoute>
+                <Navigate to="/dashboard" replace />
+              </ProtectedRoute>
+            } />
+            <Route path="/dashboard" element={
+              <ProtectedRoute>
                 <Layout><Dashboard /></Layout>
-              </FilesProvider>
-            </ProtectedRoute>
-          } />
-          <Route path="/upload" element={
-            <ProtectedRoute>
-              <FilesProvider>
+              </ProtectedRoute>
+            } />
+            <Route path="/upload" element={
+              <ProtectedRoute>
                 <Layout><Upload /></Layout>
-              </FilesProvider>
-            </ProtectedRoute>
-          } />
-          <Route path="/library" element={
-            <ProtectedRoute>
-              <FilesProvider>
+              </ProtectedRoute>
+            } />
+            <Route path="/library" element={
+              <ProtectedRoute>
                 <Layout><Library /></Layout>
-              </FilesProvider>
-            </ProtectedRoute>
-          } />
-          <Route path="*" element={<Navigate to="/login" replace />} />
-        </Routes>
-      </BrowserRouter>
+              </ProtectedRoute>
+            } />
+            <Route path="*" element={<Navigate to="/login" replace />} />
+          </Routes>
+        </BrowserRouter>
+      </FilesProvider>
     </AuthProvider>
   );
 }
