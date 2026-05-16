@@ -10,8 +10,8 @@ import { initDb, getDb, saveDb } from './db.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
-const PORT = 3000;
-const JWT_SECRET = 'palomares-beauty-secret-key-2026';
+const PORT = process.env.PORT || 3000;
+const JWT_SECRET = process.env.JWT_SECRET || 'palomares-beauty-secret-key-2026';
 
 // Ensure upload directories exist
 const uploadsBase = path.join(__dirname, 'uploads');
@@ -21,11 +21,17 @@ fs.mkdirSync(pdfDir, { recursive: true });
 fs.mkdirSync(videoDir, { recursive: true });
 
 // Middleware
-app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors({ origin: '*' })); // Allow all origins in production, or configure properly
 app.use(express.json());
 
 // Serve uploaded files statically
 app.use('/uploads', express.static(uploadsBase));
+
+// Serve React frontend statically in production
+const frontendDist = path.join(__dirname, '../dist');
+if (fs.existsSync(frontendDist)) {
+  app.use(express.static(frontendDist));
+}
 
 // Multer configuration
 const storage = multer.diskStorage({
@@ -227,6 +233,15 @@ function formatBytes(bytes) {
   const i = Math.floor(Math.log(bytes) / Math.log(k));
   return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
 }
+
+// CATCH-ALL ROUTE FOR REACT ROUTER
+app.get(/(.*)/, (req, res) => {
+  if (fs.existsSync(frontendDist)) {
+    res.sendFile(path.join(frontendDist, 'index.html'));
+  } else {
+    res.status(404).send('Frontend not built. Run npm run build.');
+  }
+});
 
 // Initialize DB then start server
 initDb().then(() => {

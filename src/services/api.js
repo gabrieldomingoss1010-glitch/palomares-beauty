@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:3000/api';
+const API_BASE = '/api';
 
 function getAuthHeaders() {
   const token = localStorage.getItem('pb_token');
@@ -70,6 +70,6 @@ export const api = {
   },
 
   getFileUrl(filePath) {
-    return `http://localhost:3000/${filePath}`;
+    return `/${filePath}`;
   }
 };
