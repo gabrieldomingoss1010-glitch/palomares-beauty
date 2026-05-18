@@ -58,7 +58,7 @@ export default function Upload() {
       />
 
       {/* Upload Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-8">
         <UploadCard
           icon={FileText}
           title="Upload de PDF"
@@ -169,7 +169,7 @@ function UploadCard({ icon: Icon, title, description, accentColor, bgColor, onCl
     <button
       onClick={onClick}
       disabled={disabled}
-      className="w-full text-left rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-200 border-2 border-dashed border-wine/15 bg-white hover:shadow-lg hover:border-wine/30 group"
+      className="w-full text-left rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center text-center transition-all duration-200 border-2 border-dashed border-wine/15 bg-white hover:shadow-lg hover:border-wine/30 group"
       style={{ opacity: disabled ? 0.5 : 1, cursor: disabled ? 'not-allowed' : 'pointer' }}
     >
       <div

@@ -49,8 +49,8 @@ export default function Library() {
   return (
     <div className="max-w-6xl mx-auto">
       {/* Toolbar */}
-      <div className="bg-white rounded-xl border border-wine/10 p-4 mb-6 flex flex-col sm:flex-row justify-between items-center gap-4">
-        <div className="flex items-center gap-2">
+      <div className="bg-white rounded-xl border border-wine/10 p-4 mb-6 flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4">
+        <div className="flex items-center justify-between sm:justify-start gap-2">
           <Filter size={18} className="text-wine/60" />
           <div className="flex bg-rose-light/20 p-1 rounded-lg">
             {['all', 'pdf', 'video'].map(f => (
@@ -96,8 +96,9 @@ export default function Library() {
         </div>
       ) : (
         <div className="bg-white rounded-xl border border-wine/10 overflow-hidden">
-          <table className="w-full">
-            <thead>
+          <div className="overflow-x-auto w-full">
+            <table className="w-full min-w-[600px] md:min-w-full">
+              <thead>
               <tr className="border-b border-wine/8 text-left" style={{ background: '#fdf8f5' }}>
                 <th className="px-5 py-3 text-xs font-semibold text-wine/50 uppercase tracking-wider">Arquivo</th>
                 <th className="px-4 py-3 text-xs font-semibold text-wine/50 uppercase tracking-wider hidden sm:table-cell">Tamanho</th>
@@ -116,7 +117,8 @@ export default function Library() {
                 />
               ))}
             </tbody>
-          </table>
+            </table>
+          </div>
         </div>
       )}
 

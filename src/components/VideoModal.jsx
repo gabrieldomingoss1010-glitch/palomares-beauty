@@ -21,12 +21,12 @@ export default function VideoModal({ file, onClose }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center md:p-4"
       style={{ background: 'rgba(0,0,0,0.85)' }}
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl"
+        className="relative w-full h-full md:h-auto md:max-w-4xl rounded-none md:rounded-2xl overflow-hidden shadow-2xl flex flex-col"
         style={{ background: '#1a0a0a' }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -62,7 +62,7 @@ export default function VideoModal({ file, onClose }) {
         </div>
 
         {/* Player */}
-        <div className="flex items-center justify-center" style={{ background: '#000', minHeight: '420px' }}>
+        <div className="flex-1 flex items-center justify-center" style={{ background: '#000', minHeight: '0' }}>
           <video
             ref={videoRef}
             controls

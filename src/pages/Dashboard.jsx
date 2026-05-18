@@ -21,7 +21,7 @@ export default function Dashboard() {
   return (
     <div className="max-w-6xl mx-auto space-y-8">
       {/* Stats */}
-      <section className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         <StatCard icon={HardDrive} label="Total de Arquivos" value={stats.total} color="text-wine-dark" />
         <StatCard icon={FileText} label="Documentos PDF" value={stats.pdfs} color="text-rose" />
         <StatCard icon={Video} label="Aulas e Vídeos" value={stats.videos} color="text-wine" />
@@ -38,7 +38,7 @@ export default function Dashboard() {
             <p className="text-wine/50 text-lg">Nenhum arquivo ainda. Faça seu primeiro upload!</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {recentFiles.map(file => (
               <RecentFileCard
                 key={file.id}
@@ -62,7 +62,7 @@ export default function Dashboard() {
             {recentFiles.map(file => (
               <div
                 key={`act-${file.id}`}
-                className="flex items-center gap-4 py-3 px-3 rounded-xl border border-transparent hover:border-wine/8 hover:bg-rose-light/5 transition-all group cursor-pointer"
+                className="flex items-start sm:items-center gap-3 sm:gap-4 py-3 px-3 rounded-xl border border-transparent hover:border-wine/8 hover:bg-rose-light/5 transition-all group cursor-pointer"
                 onClick={() => setViewingFile(file)}
               >
                 <div

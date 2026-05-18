@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { FilesProvider } from './context/FilesContext';
 import { AuthProvider } from './context/AuthContext';
@@ -10,12 +11,14 @@ import Library from './pages/Library';
 import Login from './pages/Login';
 
 function Layout({ children }) {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <div className="flex min-h-screen bg-cream">
-      <Sidebar />
-      <div className="flex-1 ml-[220px] flex flex-col">
-        <Topbar />
-        <main className="flex-1 p-8">
+      <Sidebar isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
+      <div className="flex-1 md:ml-[220px] flex flex-col min-w-0">
+        <Topbar onMenuClick={() => setIsMobileMenuOpen(true)} />
+        <main className="flex-1 p-4 sm:p-6 md:p-8 overflow-x-hidden">
           {children}
         </main>
       </div>

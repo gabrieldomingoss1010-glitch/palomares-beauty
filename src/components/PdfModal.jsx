@@ -19,13 +19,12 @@ export default function PdfModal({ file, onClose }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center md:p-4"
       style={{ background: 'rgba(0,0,0,0.75)' }}
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-2xl overflow-hidden shadow-2xl flex flex-col w-full max-w-5xl"
-        style={{ maxHeight: '92vh' }}
+        className="bg-white rounded-none md:rounded-2xl overflow-hidden shadow-2xl flex flex-col w-full h-full md:max-w-5xl md:h-auto md:max-h-[92vh]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}

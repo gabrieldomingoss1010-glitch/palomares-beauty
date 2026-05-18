@@ -498,23 +498,29 @@ export default function Login() {
         @media (max-width: 768px) {
           .login-container {
             flex-direction: column;
-            max-width: 420px;
+            max-width: 100%;
             min-height: auto;
+            border-radius: 20px;
           }
           .login-branding {
-            padding: 36px 32px;
+            padding: 28px 24px;
+            flex: none;
           }
           .login-brand-title {
-            font-size: 32px;
+            font-size: 28px;
           }
           .login-brand-subtitle {
-            font-size: 18px;
+            font-size: 14px;
+            letter-spacing: 6px;
           }
           .login-brand-footer {
             display: none;
           }
           .login-form-section {
-            padding: 36px 32px;
+            padding: 28px 24px;
+          }
+          .login-form-title {
+            font-size: 24px;
           }
         }
       `}</style>
